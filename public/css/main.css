@@ -35,3 +35,14 @@ a {
 .buttonArea {
 	margin: 10px 0 0 0;
 }
+
+.message {
+	margin: 10px 0 0 0;
+}
+
+.failure {
+	color: tomato;
+}
+.success {
+	color: lightgreen;
+}

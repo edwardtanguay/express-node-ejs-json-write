@@ -4,6 +4,8 @@
 	<title>
 		<%=siteTitle%>
 	</title>
+	<link rel="shortcut icon"
+		  href="#">
 	<link rel="stylesheet"
 		  href="css/main.css">
 	<script>
@@ -19,7 +21,18 @@
 					})
 				});
 				const data = await response.json();
-				console.log(data);
+				const message = data.message;
+				const messageElem = document.querySelector('.message');
+				passwordElem.value = '';
+				messageElem.innerText = message;
+				if(response.status == 200) {
+					messageElem.classList.remove('failure');
+					messageElem.classList.add('success');
+				}
+				if(response.status == 401) {
+					messageElem.classList.remove('success');
+					messageElem.classList.add('failure');
+				}
 			})();
 		}
 	</script>
@@ -36,10 +49,12 @@
 		</p>
 		<p>Changing this setting will affect all sessions permanently, not just this current session:</p>
 		<div class="adminArea">
-			<div>Admin password: <input type="text" class="password">				
+			<div>Admin password: <input type="password"
+					   class="password" />
 				<button onclick="handleImageState(true)">Show Images</button>
 				<button onclick="handleImageState(false)">Hide Images</button>
 			</div>
+			<div class="message">Type in password and click a button.</div>
 		</div>
 </body>
 
