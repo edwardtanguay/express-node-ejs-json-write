@@ -6,3 +6,9 @@ export const getJsonDataFromFile = (fileName, callback) => {
 		callback(data);
 	});
 }
+
+export const saveJsonDataToFile = (fileName, content, callback) => {
+	fs.writeFile(`./src/data/${fileName}`, JSON.stringify(content,null, 4), (err) => {
+		callback();
+	});
+}

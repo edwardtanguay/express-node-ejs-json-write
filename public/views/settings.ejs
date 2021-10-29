@@ -7,9 +7,15 @@
 	<link rel="stylesheet"
 		  href="css/main.css">
 	<script>
-		const handleImageState = (imageState) => {
+		const handleImageState = (showImages) => {
 			(async () => {
-				const response = await fetch('http://localhost:3011/api/state');
+				const response = await fetch('http://localhost:3011/api/changeState', {
+					method: 'PATCH',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						showImages
+					})
+				});
 				const data = await response.json();
 				console.log(data);
 			})();

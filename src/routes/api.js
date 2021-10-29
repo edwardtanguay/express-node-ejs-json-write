@@ -1,10 +1,16 @@
 import express from 'express';
+import * as qfil from '../qtools/qfil.js';
 
 const router = express.Router();
+router.use(express.json());
 
-router.get('/state', (req, res) => {
-	res.json({
-		message: 'api works'
+router.patch('/changeState', (req, res) => {
+	const { showImages } = req.body;
+	qfil.getJsonDataFromFile('siteData.json', (siteData) => {
+		siteData.showImages = showImages;
+		qfil.saveJsonDataToFile('siteData.json', siteData, () => {
+			res.status(200);
+		});
 	});
 });
 
