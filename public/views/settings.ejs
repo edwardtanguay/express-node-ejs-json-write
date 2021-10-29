@@ -1,0 +1,36 @@
+<html>
+
+<head>
+	<title>
+		<%=siteTitle%>
+	</title>
+	<link rel="stylesheet"
+		  href="css/main.css">
+	<script>
+		const handleImageState = (imageState) => {
+			(async () => {
+				const response = await fetch('http://localhost:3011/api/state');
+				const data = await response.json();
+				console.log(data);
+			})();
+		}
+	</script>
+</head>
+
+<body>
+	<h1>
+		<%=siteTitle%>
+	</h1>
+	<%- include('_nav.ejs')
+		%>
+		<p>
+			<%=message%>
+		</p>
+		<p>Changing this setting will affect all sessions permanently, not just this current session:</p>
+		<div class="buttonArea">
+			<button onclick="handleImageState(true)">Show Images</button>
+			<button onclick="handleImageState(false)">Hide Images</button>
+		</div>
+</body>
+
+</html>
