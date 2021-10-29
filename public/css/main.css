@@ -26,3 +26,12 @@ a {
 .showInfoArea .productInfo {
 	margin: 5px 0 0 0;
 }
+
+.adminArea {
+	background: #444;
+	padding: 10px;
+}
+
+.buttonArea {
+	margin: 10px 0 0 0;
+}

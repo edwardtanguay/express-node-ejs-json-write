@@ -8,12 +8,14 @@
 		  href="css/main.css">
 	<script>
 		const handleImageState = (showImages) => {
+			const passwordElem = document.querySelector('.password');
 			(async () => {
 				const response = await fetch('http://localhost:3011/api/changeState', {
 					method: 'PATCH',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
-						showImages
+						showImages,
+						password: passwordElem.value
 					})
 				});
 				const data = await response.json();
@@ -33,9 +35,11 @@
 			<%=message%>
 		</p>
 		<p>Changing this setting will affect all sessions permanently, not just this current session:</p>
-		<div class="buttonArea">
-			<button onclick="handleImageState(true)">Show Images</button>
-			<button onclick="handleImageState(false)">Hide Images</button>
+		<div class="adminArea">
+			<div>Admin password: <input type="text" class="password">				
+				<button onclick="handleImageState(true)">Show Images</button>
+				<button onclick="handleImageState(false)">Hide Images</button>
+			</div>
 		</div>
 </body>
 
