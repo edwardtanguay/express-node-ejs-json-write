@@ -12,7 +12,8 @@
 		const handleImageState = (showImages) => {
 			const passwordElem = document.querySelector('.password');
 			(async () => {
-				const response = await fetch('http://localhost:3012/api/changeState', {
+				const port = <%=port %>;
+				const response = await fetch('http://localhost:' + port + '/api/changeState', {
 					method: 'PATCH',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
