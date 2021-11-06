@@ -3,8 +3,10 @@ import path from 'path';
 const __dirname = path.resolve(path.dirname(''));
 import * as qfil from './qtools/qfil.js';
 import apiRouter from './routes/api.js';
+import dotenv from 'dotenv';
 
 const app = express();
+dotenv.config();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './public/views'));
@@ -17,12 +19,14 @@ app.use(express.static(staticDirectory));
 qfil.getJsonDataFromFile('siteData.json', (siteData) => {
 
 	const port = process.env.PORT || siteData.localPort;
+	const backendUrl = process.env.BACKEND_URL;
 
 	app.get('/info', (req, res) => {
 		res.render('info',
 			{
 				...siteData,
 				port,
+				backendUrl,
 				message: "Welcome to info page."
 			});
 	});
@@ -31,6 +35,7 @@ qfil.getJsonDataFromFile('siteData.json', (siteData) => {
 			{
 				...siteData,
 				port,
+				backendUrl,
 				message: "Welcome to settings page."
 			});
 	});
@@ -39,6 +44,7 @@ qfil.getJsonDataFromFile('siteData.json', (siteData) => {
 			{
 				...siteData,
 				port,
+				backendUrl,
 				message: 'Welcome to the home page.',
 			});
 	});

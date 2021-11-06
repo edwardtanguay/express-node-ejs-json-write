@@ -13,7 +13,8 @@
 			const passwordElem = document.querySelector('.password');
 			(async () => {
 				const port = <%=port %>;
-				const response = await fetch('http://localhost:' + port + '/api/changeState', {
+				const backendUrl = '<%=backendUrl %>';
+				const response = await fetch('http://' + backendUrl + ':' + port + '/api/changeState', {
 					method: 'PATCH',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -26,11 +27,11 @@
 				const messageElem = document.querySelector('.message');
 				passwordElem.value = '';
 				messageElem.innerText = message;
-				if(response.status == 200) {
+				if (response.status == 200) {
 					messageElem.classList.remove('failure');
 					messageElem.classList.add('success');
 				}
-				if(response.status == 401) {
+				if (response.status == 401) {
 					messageElem.classList.remove('success');
 					messageElem.classList.add('failure');
 				}
