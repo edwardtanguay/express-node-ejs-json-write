@@ -16,12 +16,13 @@ app.use(express.static(staticDirectory));
 
 qfil.getJsonDataFromFile('siteData.json', (siteData) => {
 
-	const port = process.env.PORT || siteData.port;
+	const port = process.env.PORT || siteData.localPort;
 
 	app.get('/info', (req, res) => {
 		res.render('info',
 			{
 				...siteData,
+				port,
 				message: "Welcome to info page."
 			});
 	});
@@ -29,6 +30,7 @@ qfil.getJsonDataFromFile('siteData.json', (siteData) => {
 		res.render('settings',
 			{
 				...siteData,
+				port,
 				message: "Welcome to settings page."
 			});
 	});
@@ -36,6 +38,7 @@ qfil.getJsonDataFromFile('siteData.json', (siteData) => {
 		res.render('index',
 			{
 				...siteData,
+				port,
 				message: 'Welcome to the home page.',
 			});
 	});

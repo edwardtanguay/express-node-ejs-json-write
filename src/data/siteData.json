@@ -1,5 +1,5 @@
 {
     "siteTitle": "The Book Seller",
     "showImages": true,
-    "port": 3014
+    "localPort": 3014
 }
