@@ -14,7 +14,7 @@
 			(async () => {
 				const port = <%=port %>;
 				const backendUrl = '<%=backendUrl %>';
-				const response = await fetch(backendUrl + ':' + port + '/api/changeState', {
+				const response = await fetch(backendUrl + ':' + port + '/api/changeState/', {
 					method: 'PATCH',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
